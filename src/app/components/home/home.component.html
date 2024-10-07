@@ -1,0 +1,37 @@
+<main class="main">
+    <div class="container">
+      <div class="row">
+        <div class="col col-4">
+          <app-person-form (saveEvent)="createAlertEvent()"></app-person-form>
+        </div>
+        <div class="col col-8 my-3 table-responsive" data-bs-theme="dark">
+          <app-alert-message *ngIf="showAlert" [message]="deletedMessage" [messageType]="'danger'" (closeAlertEvent)="closeAlertEvent()"/>
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th class="text-center">Edad</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let person of persons">
+                <td>{{person.id}}</td>
+                <td>{{person.names}}</td>
+                <td>{{person.lastname}}</td>
+                <td>{{person.age}}</td>
+                <td>{{person.isEnabled ? 'Activo' : 'Inactivo'}}</td>
+                <td class="d-flex justify-content-center gap-2">
+                  <a class="btn btn-primary" (click)="onEdit(person.id)">Editar</a>
+                  <a class="btn btn-danger" (click)="onDelete(person.id)">Eliminar</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</main>
